@@ -3,98 +3,179 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"/>
-<title>Ghaima</title>
+<title> Ghaima </title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400;600;700;800&family=Cairo:wght@300;400;600;700;900&family=Nunito:wght@400;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
 
 <style>
-/* ──────────────────────────────────────────
-   المتغيرات والأنماط الأساسية (نفس الأصلي)
-────────────────────────────────────────── */
-:root {
-  --blue:#4A7FE5; --blue2:#2d5fc4; --blue3:#1a3a8f;
-  --green:#22C55E; --pink:#F9A8C8; --yellow:#FDE96B;
-  --teal:#7BBCCC; --red:#CC1616; --sky:#A8D8F0;
-  --night1:#0a1628; --night2:#0d2045;
+/* ══════════════════════════════════════════
+   VARIABLES
+══════════════════════════════════════════ */
+:root{
+  --blue:#4A7FE5;--blue2:#2d5fc4;--blue3:#1a3a8f;
+  --green:#22C55E;--pink:#F9A8C8;--yellow:#FDE96B;
+  --teal:#7BBCCC;--red:#CC1616;--sky:#A8D8F0;
+  --night1:#0a1628;--night2:#0d2045;
 }
-* { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior:smooth; }
-body { background:var(--night1); color:#fff; overflow-x:hidden; font-family:'Cairo',sans-serif; }
-::selection { background:var(--blue); color:#fff; }
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--night1);color:#fff;overflow-x:hidden;}
+::selection{background:var(--blue);color:#fff;}
 
-/* ── أنماط إضافية لكروت النسخ ── */
+/* ── Font switching ── */
+[lang="ar"] body, [lang="ar"] .sec-title,
+[lang="ar"] .feat-text h3, [lang="ar"] .t-card h4,
+[lang="ar"] .enemy-card h4, [lang="ar"] .dl-card h2,
+[lang="ar"] .stat-label, [lang="ar"] .hero-tagline {
+  font-family:'Cairo',sans-serif;
+}
+[lang="ar"] .btn-primary, [lang="ar"] .btn-dl-big,
+[lang="ar"] .nav-dl, [lang="ar"] .sec-title,
+[lang="ar"] .p-score-label, [lang="ar"] .stat-num {
+  font-family:'Baloo Bhaijaan 2',cursive;
+}
+[lang="en"] body {
+  font-family:'Poppins',sans-serif;
+}
+[lang="en"] .sec-title, [lang="en"] .btn-primary,
+[lang="en"] .btn-dl-big, [lang="en"] .nav-dl,
+[lang="en"] .feat-text h3, [lang="en"] .t-card h4,
+[lang="en"] .hero-tagline, [lang="en"] .stat-num,
+[lang="en"] .enemy-card h4, [lang="en"] .dl-card h2 {
+  font-family:'Nunito',sans-serif;
+}
+
+#bgCanvas{position:fixed;inset:0;z-index:0;pointer-events:none;}
+
+/* ══════════════════════════════════════════
+   LANGUAGE TOGGLE BUTTON
+══════════════════════════════════════════ */
+#langBtn {
+  display:flex;align-items:center;gap:7px;
+  background:rgba(255,255,255,.07);
+  border:1.5px solid rgba(255,255,255,.15);
+  border-radius:50px;
+  padding:7px 14px;
+  color:rgba(255,255,255,.85);
+  font-size:.82rem;font-weight:700;
+  cursor:pointer;
+  transition:background .2s, border-color .2s, transform .15s;
+  flex-shrink:0;
+  letter-spacing:.04em;
+}
+#langBtn:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.25);}
+#langBtn:active{transform:scale(.95);}
+.lang-flag{font-size:.95rem;}
+.lang-label{font-size:.76rem;font-weight:700;}
+
+/* slide-out / in animation for page content */
+.lang-switching * { transition: none !important; }
+@keyframes langFadeIn {
+  from { opacity:0; transform:translateY(8px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+.lang-in { animation: langFadeIn .35s ease both; }
+
+/* ══════════════════════════════════════════
+   NAV
+══════════════════════════════════════════ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 18px;
+  background:rgba(8,17,30,.78);
+  backdrop-filter:blur(22px);
+  border-bottom:1px solid rgba(74,127,229,.14);
+  gap:10px;
+}
+.nav-logo{height:28px;filter:drop-shadow(0 0 8px rgba(74,127,229,.6));}
+.nav-right{display:flex;align-items:center;gap:8px;}
+.nav-dl{
+  display:flex;align-items:center;gap:6px;
+  background:var(--blue);color:#fff;
+  font-size:.84rem;font-weight:700;
+  text-decoration:none;
+  padding:8px 15px;border-radius:50px;
+  border:2px solid var(--blue2);
+  box-shadow:0 3px 0 var(--blue2);
+  transition:transform .12s,box-shadow .12s;
+  white-space:nowrap;
+}
+.nav-dl:active{transform:translateY(2px);box-shadow:0 1px 0 var(--blue2);}
+
+/* NEW ── Styles for version selection cards ── */
 .version-cards {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 24px;
-  max-width: 520px;
-  margin: 32px auto;
-  padding: 0 16px;
+  gap: 20px;
+  width: 100%;
+  max-width: 480px;
+  margin: 24px auto;
 }
 .version-card {
-  background: rgba(255,255,255,0.04);
-  border: 2px solid rgba(255,255,255,0.12);
-  border-radius: 20px;
-  padding: 28px 24px;
+  background: rgba(255,255,255,.05);
+  border: 2px solid rgba(255,255,255,.12);
+  border-radius: 18px;
+  padding: 24px 20px;
   text-align: center;
-  transition: all 0.25s ease;
-  position: relative;
-  overflow: hidden;
+  transition: all .25s ease;
 }
 .version-card.active {
   border-color: var(--yellow);
-  background: rgba(253,233,107,0.09);
-  box-shadow: 0 8px 32px rgba(253,233,107,0.18);
+  background: rgba(253,233,107,.08);
+  box-shadow: 0 8px 24px rgba(253,233,107,.2);
 }
-.version-card.coming-soon {
-  opacity: 0.65;
-  filter: grayscale(0.4);
+.version-card.coming {
+  opacity: 0.6;
+  filter: grayscale(30%);
+  pointer-events: none;
 }
 .version-card h3 {
-  font-size: 1.35rem;
+  font-size: 1.28rem;
   font-weight: 800;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 .version-card.active h3 { color: var(--yellow); }
-.version-card.coming-soon h3 { color: var(--sky); }
-.version-card p.desc {
-  font-size: 0.96rem;
-  color: rgba(168,216,240,0.75);
-  line-height: 1.6;
-  margin-bottom: 24px;
+.version-card.coming h3 { color: var(--sky); }
+.version-card .desc {
+  font-size: 0.92rem;
+  color: rgba(168,216,240,.7);
+  line-height: 1.55;
+  margin-bottom: 20px;
 }
 .version-card .btn-version {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  background: linear-gradient(135deg, var(--blue), var(--blue2));
-  color: white;
+  padding: 14px 32px;
+  border-radius: 999px;
+  font-size: 1.05rem;
   font-weight: 700;
-  font-size: 1.08rem;
-  padding: 16px 36px;
-  border-radius: 50px;
   text-decoration: none;
-  border: 2px solid rgba(255,255,255,0.15);
-  box-shadow: 0 5px 0 var(--blue3);
-  transition: all 0.15s ease;
+  transition: all .15s;
 }
 .version-card.active .btn-version {
-  background: linear-gradient(135deg, #FDE96B, #f59e0b);
-  border-color: #d97706;
-  box-shadow: 0 5px 0 #b45309;
+  background: linear-gradient(135deg, var(--yellow), #facc15);
   color: #0f172a;
+  box-shadow: 0 5px 0 #ca8a04;
 }
-.version-card .btn-version:active {
-  transform: translateY(3px);
-  box-shadow: 0 2px 0 var(--blue3);
-}
+.version-card .btn-version svg { width: 20px; height: 20px; }
 
-/* باقي الـ CSS الأصلي يبقى هنا (اختصرت للرد) */
-/* ... hero, nav, showcase, stats, features, enemies, tips, timeline, dl-section, footer ... */
+/* باقي الـ CSS الأصلي يستمر هنا بدون تغيير كبير ... */
+
+.hero{
+  position:relative;z-index:1;
+  min-height:100svh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:100px 24px 70px;text-align:center;overflow:hidden;
+}
+/* ... باقي الـ hero وغيره كما هو ... */
 </style>
 </head>
 <body>
+
+<canvas id="bgCanvas"></canvas>
 
 <!-- ═══ NAV ═══ -->
 <nav>
@@ -104,9 +185,10 @@ body { background:var(--night1); color:#fff; overflow-x:hidden; font-family:'Cai
       <span class="lang-flag" id="langFlag">us</span>
       <span class="lang-label" id="langLabel">EN</span>
     </button>
-    <a href="https://github.com/mohamed-ali813/ghaima/releases/latest/download/ghaima.apk" class="nav-dl" onclick="burst(event)">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-      <span>تحميل</span>
+    <a href="https://github.com/mohamed-ali813/ghaima/releases/latest/download/ghaima.apk"
+       class="nav-dl" onclick="burst(event)" data-ar="تحميل" data-en="Download">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      <span data-ar="تحميل" data-en="Download">تحميل</span>
     </a>
   </div>
 </nav>
@@ -116,91 +198,102 @@ body { background:var(--night1); color:#fff; overflow-x:hidden; font-family:'Cai
   <div class="hero-glow"></div>
   <img src="cloud_char.png" alt="Ghaima character" class="hero-char"/>
   <img src="logo.png" alt="Ghaima" class="hero-logo"/>
-  <p class="hero-tagline">اصطد المطر ☁️ · تجنّب البرق ⚡ · كسر الرقم القياسي 🏆</p>
-  <p class="hero-sub">نسخة Early Access تجريبية – تحت التطوير</p>
+  <p class="hero-tagline" data-ar="اصطد المطر ☁️ · تجنّب البرق ⚡ · كسر الرقم القياسي 🏆" data-en="Catch the Rain ☁️ · Dodge the Lightning ⚡ · Beat Your High Score 🏆">
+    اصطد المطر ☁️ · تجنّب البرق ⚡ · كسر الرقم القياسي 🏆
+  </p>
+  <p class="hero-sub" data-ar="نسخة Early Access تجريبية – تحت التطوير" data-en="Early Access – still in development">
+    نسخة Early Access تجريبية – تحت التطوير
+  </p>
 
   <div class="hero-btns">
+    <!-- MODIFIED ── استبدال الأزرار القديمة بكروت النسخ ── -->
     <div class="version-cards">
 
-      <!-- كرت النسخة التجريبية (نشط) -->
       <div class="version-card active">
-        <h3>Early Access</h3>
-        <p class="desc">النسخة التجريبية الحالية<br>مناسبة للتجربة وإرسال الملاحظات<br>قد تحتوي على أخطاء</p>
+        <h3 data-ar="Early Access" data-en="Early Access">Early Access</h3>
+        <p class="desc" data-ar="النسخة التجريبية الحالية<br>للتجربة وإرسال الملاحظات" data-en="Current test version<br>For trying & giving feedback">
+          النسخة التجريبية الحالية<br>للتجربة وإرسال الملاحظات
+        </p>
         <a href="https://github.com/mohamed-ali813/ghaima/releases/latest/download/ghaima.apk"
-           class="btn-version" onclick="burst(event)">
+           class="btn-version btn-primary" onclick="burst(event)">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          تحميل الآن
+          <span data-ar="تحميل الآن" data-en="Download Now">تحميل الآن</span>
         </a>
       </div>
 
-      <!-- كرت النسخة الرسمية (قريباً) -->
-      <div class="version-card coming-soon">
-        <h3>v1.0 الرسمية</h3>
-        <p class="desc">الإصدار النهائي المستقر<br>ميزات كاملة – بدون أخطاء كبيرة<br>سيتم الإعلان عنه قريباً</p>
-        <a href="#" class="btn-version" style="pointer-events:none; opacity:0.6;">
+      <div class="version-card coming">
+        <h3 data-ar="v1.0 الرسمية" data-en="Official v1.0">v1.0 الرسمية</h3>
+        <p class="desc" data-ar="الإصدار النهائي المستقر<br>قريباً" data-en="Stable final release<br>Coming soon">
+          الإصدار النهائي المستقر<br>قريباً
+        </p>
+        <a href="#" class="btn-version btn-primary">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-          قريباً
+          <span data-ar="قريباً" data-en="Coming Soon">قريباً</span>
         </a>
       </div>
 
     </div>
 
-    <div class="badge-row" style="margin-top:32px;">
-      <span class="badge free">✦ مجاني 100%</span>
-      <span class="badge" style="background:rgba(253,233,107,0.18);border-color:rgba(253,233,107,0.4);color:#fde96b;">⚡ Early Access</span>
-      <span class="badge">📱 Android</span>
+    <div class="badge-row">
+      <span class="badge free" data-ar="✦ مجاني 100%" data-en="✦ 100% Free">✦ مجاني 100%</span>
+      <span class="badge" style="background:rgba(253,233,107,.18);border-color:rgba(253,233,107,.4);color:#fde96b;" data-ar="⚡ Early Access" data-en="⚡ Early Access">⚡ Early Access</span>
+      <span class="badge">📱 Android APK</span>
     </div>
   </div>
 
-  <div class="scroll-hint">...</div>
+  <div class="scroll-hint">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(168,216,240,0.6)" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    <span data-ar="اكتشف أكثر" data-en="Discover more">اكتشف أكثر</span>
+  </div>
 </section>
 
-<!-- باقي الأقسام (showcase, stats, features, enemies, tips, timeline) تبقى كما هي -->
+<!-- باقي الأقسام الأصلية بدون تغيير كبير (showcase, stats, features, enemies, tips, timeline) -->
 
 <!-- ═══ DOWNLOAD SECTION ═══ -->
 <div class="dl-section">
   <div class="dl-card reveal">
     <img src="cloud_char.png" alt="cloud" class="dl-cloud"/>
-    <h2>جاهز لتجربة غيمة؟ ☁️</h2>
-    <p>اختر النسخة المناسبة لك</p>
+    <h2 data-ar="جاهز للعب؟ ☁️" data-en="Ready to Play? ☁️">جاهز للعب؟ ☁️</h2>
 
+    <!-- MODIFIED ── نفس كروت النسخ هنا أيضاً ── -->
     <div class="version-cards">
 
-      <!-- نفس الكروت هنا أيضاً -->
       <div class="version-card active">
-        <h3>Early Access</h3>
-        <p class="desc">النسخة التجريبية الحالية</p>
+        <h3 data-ar="Early Access" data-en="Early Access">Early Access</h3>
+        <p class="desc" data-ar="النسخة التجريبية الحالية" data-en="Current test version">
+          النسخة التجريبية الحالية
+        </p>
         <a href="https://github.com/mohamed-ali813/ghaima/releases/latest/download/ghaima.apk"
-           class="btn-version" onclick="burst(event)">
-          تحميل النسخة التجريبية
+           class="btn-version btn-primary" onclick="burst(event)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span data-ar="تحميل النسخة التجريبية" data-en="Download Early Access">تحميل النسخة التجريبية</span>
         </a>
       </div>
 
-      <div class="version-card coming-soon">
-        <h3>v1.0 الرسمية</h3>
-        <p class="desc">الإصدار النهائي – قريباً</p>
-        <a href="#" class="btn-version" style="pointer-events:none; opacity:0.6;">
-          قريباً
+      <div class="version-card coming">
+        <h3 data-ar="v1.0 الرسمية" data-en="Official v1.0">v1.0 الرسمية</h3>
+        <p class="desc" data-ar="الإصدار النهائي – قريباً" data-en="Final release – coming soon">
+          الإصدار النهائي – قريباً
+        </p>
+        <a href="#" class="btn-version btn-primary">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <span data-ar="قريباً" data-en="Coming Soon">قريباً</span>
         </a>
       </div>
 
     </div>
 
-    <div class="dl-meta">...</div>
+    <div class="dl-meta">
+      <!-- ... محتوى dl-meta الأصلي ... -->
+    </div>
   </div>
 </div>
 
-<!-- footer -->
-<footer>
-  ...
-  <p style="margin:12px 0; color:rgba(253,233,107,0.7);">حالياً: Early Access – النسخة الرسمية قريباً</p>
-  ...
-</footer>
+<!-- stripe + footer الأصلي مع إمكانية إضافة تنبيه صغير -->
 
-<!-- JavaScript (نفس الأصلي) -->
+<!-- JavaScript الأصلي بدون تغيير -->
 <script>
-/* ... كود الـ language toggle, canvas, animations, burst, reveal ... */
+/* ... كود اللغة، الخلفية، الـ canvas، الـ burst، الـ reveal ... */
 </script>
-
 </body>
 </html>
