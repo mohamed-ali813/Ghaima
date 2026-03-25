@@ -21,7 +21,6 @@
 html{scroll-behavior:smooth;}
 body{background:var(--night1);color:#fff;overflow-x:hidden;}
 ::selection{background:var(--blue);color:#fff;}
-
 /* ── Font switching ── */
 [lang="ar"] body, [lang="ar"] .sec-title,
 [lang="ar"] .feat-text h3, [lang="ar"] .t-card h4,
@@ -44,9 +43,7 @@ body{background:var(--night1);color:#fff;overflow-x:hidden;}
 [lang="en"] .enemy-card h4, [lang="en"] .dl-card h2 {
   font-family:'Nunito',sans-serif;
 }
-
 #bgCanvas{position:fixed;inset:0;z-index:0;pointer-events:none;}
-
 /* ══════════════════════════════════════════
    LANGUAGE TOGGLE BUTTON
 ══════════════════════════════════════════ */
@@ -67,15 +64,13 @@ body{background:var(--night1);color:#fff;overflow-x:hidden;}
 #langBtn:active{transform:scale(.95);}
 .lang-flag{font-size:.95rem;}
 .lang-label{font-size:.76rem;font-weight:700;}
-
 /* slide-out / in animation for page content */
 .lang-switching * { transition: none !important; }
 @keyframes langFadeIn {
   from { opacity:0; transform:translateY(8px); }
-  to   { opacity:1; transform:translateY(0); }
+  to { opacity:1; transform:translateY(0); }
 }
 .lang-in { animation: langFadeIn .35s ease both; }
-
 /* ══════════════════════════════════════════
    NAV
 ══════════════════════════════════════════ */
@@ -102,7 +97,6 @@ nav{
   white-space:nowrap;
 }
 .nav-dl:active{transform:translateY(2px);box-shadow:0 1px 0 var(--blue2);}
-
 /* ══════════════════════════════════════════
    HERO
 ══════════════════════════════════════════ */
@@ -163,7 +157,6 @@ nav{
 @keyframes breathe{0%,100%{opacity:.25;transform:translateX(-50%) translateY(0);}50%{opacity:.65;transform:translateX(-50%) translateY(7px);}}
 .scroll-hint span{font-size:.66rem;color:#a8d8f0;letter-spacing:.1em;}
 .wave-sep{width:100%;display:block;margin-bottom:-2px;}
-
 /* ══════════════════════════════════════════
    SHOWCASE
 ══════════════════════════════════════════ */
@@ -195,7 +188,6 @@ nav{
 .p-heart{font-size:.85rem;animation:hb 1.5s ease-in-out infinite;}
 .p-heart:nth-child(2){animation-delay:.15s;}.p-heart:nth-child(3){animation-delay:.3s;}
 @keyframes hb{0%,100%{transform:scale(1);}50%{transform:scale(1.2);}}
-
 /* ══════════════════════════════════════════
    SECTIONS
 ══════════════════════════════════════════ */
@@ -204,7 +196,6 @@ nav{
 .sec-title{font-size:clamp(1.45rem,6vw,2rem);font-weight:800;line-height:1.25;margin-bottom:10px;}
 .sec-title em{font-style:normal;background:linear-gradient(135deg,var(--yellow),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .sec-body{font-size:clamp(.83rem,3.4vw,.93rem);color:rgba(168,216,240,.65);line-height:1.85;}
-
 /* FEAT CARDS */
 .feat-grid{display:flex;flex-direction:column;gap:12px;margin-top:28px;}
 .feat-card{background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.08);border-radius:22px;padding:20px 18px;display:flex;align-items:flex-start;gap:16px;transition:transform .2s,border-color .2s,background .2s;position:relative;overflow:hidden;}
@@ -219,7 +210,6 @@ nav{
 .c-yellow .feat-icon{background:rgba(253,233,107,.14);}.c-pink .feat-icon{background:rgba(249,168,200,.18);}.c-teal .feat-icon{background:rgba(123,188,204,.18);}
 .feat-text h3{font-size:clamp(.93rem,4vw,1.08rem);font-weight:800;margin-bottom:4px;}
 .feat-text p{font-size:clamp(.77rem,3.1vw,.87rem);color:rgba(168,216,240,.58);line-height:1.75;}
-
 /* STATS */
 .stats-section{position:relative;z-index:1;background:linear-gradient(135deg,rgba(74,127,229,.07),rgba(123,188,204,.04));border-top:1px solid rgba(74,127,229,.1);border-bottom:1px solid rgba(74,127,229,.1);padding:48px 20px;overflow:hidden;}
 .stats-section::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:radial-gradient(circle,rgba(74,127,229,.12),transparent 70%);border-radius:50%;}
@@ -230,7 +220,6 @@ nav{
 .col-g{color:#4ade80;text-shadow:0 0 12px rgba(74,222,128,.4);}
 .col-b{color:var(--sky);text-shadow:0 0 12px rgba(168,216,240,.4);}
 .stat-label{font-size:.7rem;color:rgba(255,255,255,.38);font-weight:600;letter-spacing:.04em;}
-
 /* ENEMIES */
 .enemies{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:26px;}
 .enemy-card{background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.07);border-radius:20px;padding:22px 16px;text-align:center;}
@@ -241,14 +230,12 @@ nav{
 .tag{display:inline-block;font-size:.63rem;font-weight:700;padding:3px 10px;border-radius:50px;margin-top:10px;letter-spacing:.06em;}
 .tag-safe{background:rgba(34,197,94,.14);color:#4ade80;border:1px solid rgba(34,197,94,.28);}
 .tag-danger{background:rgba(204,22,22,.1);color:#f87171;border:1px solid rgba(204,22,22,.22);}
-
 /* TIPS */
 .tips-grid{display:flex;flex-direction:column;gap:12px;margin-top:26px;}
 .tip-card{background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.08);border-radius:18px;padding:16px 18px;display:flex;align-items:center;gap:14px;}
 .tip-icon{font-size:1.4rem;flex-shrink:0;}
 .tip-card p{font-size:clamp(.78rem,3.2vw,.88rem);color:rgba(168,216,240,.65);line-height:1.7;}
 .tip-card strong{color:#fff;font-weight:700;}
-
 /* TIMELINE */
 .timeline{position:relative;margin-top:30px;padding-right:18px;}
 [lang="en"] .timeline{padding-right:0;padding-left:18px;}
@@ -266,7 +253,6 @@ nav{
 .t-card{background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.07);border-radius:16px;padding:14px 16px;}
 .t-card h4{font-size:clamp(.9rem,3.8vw,1.02rem);font-weight:800;margin-bottom:4px;}
 .t-card p{font-size:clamp(.76rem,3vw,.85rem);color:rgba(168,216,240,.58);line-height:1.7;}
-
 /* DL */
 .dl-section{position:relative;z-index:1;padding:70px 20px 80px;text-align:center;overflow:hidden;}
 .dl-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(74,127,229,.1),transparent 65%);pointer-events:none;}
@@ -280,7 +266,6 @@ nav{
 .btn-dl-big:active{transform:translateY(5px);box-shadow:0 1px 0 var(--blue3),0 4px 15px rgba(74,127,229,.4);}
 .dl-meta{margin-top:18px;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;}
 .dl-meta-item{display:flex;align-items:center;gap:5px;font-size:.72rem;font-weight:600;color:rgba(255,255,255,.32);}
-
 /* STRIPE + FOOTER */
 .stripe{height:6px;width:100%;background:linear-gradient(90deg,var(--blue) 0% 14%,#000 14% 15.5%,var(--green) 15.5% 29%,#000 29% 30.5%,var(--pink) 30.5% 44%,#000 44% 45.5%,var(--yellow) 45.5% 59%,#000 59% 60.5%,var(--teal) 60.5% 74%,#000 74% 75.5%,var(--red) 75.5% 89%,#000 89% 90.5%,var(--sky) 90.5% 100%);}
 footer{background:rgba(0,0,0,.45);padding:30px 20px;text-align:center;border-top:1px solid rgba(255,255,255,.06);}
@@ -288,14 +273,11 @@ footer{background:rgba(0,0,0,.45);padding:30px 20px;text-align:center;border-top
 footer p{font-size:.72rem;color:rgba(255,255,255,.28);line-height:1.9;}
 footer a{color:var(--sky);text-decoration:none;opacity:.7;}
 footer a:hover{opacity:1;}
-
 /* REVEAL */
 .reveal{opacity:0;transform:translateY(36px);transition:opacity .65s ease,transform .65s ease;}
 .reveal.up{opacity:1;transform:translateY(0);}
 .d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}
-
 @keyframes cFly{from{transform:translate(0,0) rotate(0deg);opacity:1;}to{transform:translate(var(--cx),var(--cy)) rotate(var(--cr));opacity:0;}}
-
 /* ══════════════════════════════════════════
    VERSION CARDS
 ══════════════════════════════════════════ */
@@ -314,17 +296,14 @@ footer a:hover{opacity:1;}
 </style>
 </head>
 <body>
-
 <canvas id="bgCanvas"></canvas>
 
-<!-- ═══ NAV ═══ -->
+<!-- NAV -->
 <nav>
   <img src="logo.png" alt="Ghaima" class="nav-logo"/>
   <div class="nav-right">
-    <!-- LANGUAGE TOGGLE -->
     <button id="langBtn" onclick="toggleLang()" aria-label="Switch language">
-      <span class="lang-flag" id="langFlag">us
-      </span>
+      <span class="lang-flag" id="langFlag">us</span>
       <span class="lang-label" id="langLabel">EN</span>
     </button>
     <a href="#dl" class="nav-dl" onclick="burst(event)">
@@ -334,7 +313,7 @@ footer a:hover{opacity:1;}
   </div>
 </nav>
 
-<!-- ═══ HERO ═══ -->
+<!-- HERO -->
 <section class="hero">
   <div class="hero-glow"></div>
   <img src="cloud_char.png" alt="Ghaima character" class="hero-char"/>
@@ -366,7 +345,7 @@ footer a:hover{opacity:1;}
   <path d="M0,20 C300,50 1140,0 1440,25 L1440,50 L0,50 Z" fill="rgba(13,32,69,0.8)"/>
 </svg>
 
-<!-- ═══ PHONE SHOWCASE ═══ -->
+<!-- PHONE SHOWCASE -->
 <div class="showcase reveal">
   <div class="showcase-inner">
     <div class="showcase-text">
@@ -397,7 +376,7 @@ footer a:hover{opacity:1;}
   </div>
 </div>
 
-<!-- ═══ STATS ═══ -->
+<!-- STATS -->
 <div class="stats-section reveal">
   <div style="max-width:640px;margin:0 auto;">
     <div style="text-align:center;margin-bottom:26px;">
@@ -420,7 +399,7 @@ footer a:hover{opacity:1;}
   </div>
 </div>
 
-<!-- ═══ FEATURES ═══ -->
+<!-- FEATURES -->
 <div class="section">
   <div class="reveal">
     <span class="sec-label" data-ar="✦ المميزات" data-en="✦ Features">✦ المميزات</span>
@@ -479,7 +458,7 @@ footer a:hover{opacity:1;}
   </div>
 </div>
 
-<!-- ═══ OBSTACLES ═══ -->
+<!-- OBSTACLES -->
 <div class="section" style="padding-top:0;">
   <div class="reveal">
     <span class="sec-label" data-ar="✦ ما الذي تواجهه؟" data-en="✦ What You Face">✦ ما الذي تواجهه؟</span>
@@ -503,7 +482,7 @@ footer a:hover{opacity:1;}
   </div>
 </div>
 
-<!-- ═══ TIPS ═══ -->
+<!-- TIPS -->
 <div class="section" style="padding-top:0;">
   <div class="reveal">
     <span class="sec-label" data-ar="✦ نصائح للفوز" data-en="✦ Pro Tips">✦ نصائح للفوز</span>
@@ -543,7 +522,7 @@ footer a:hover{opacity:1;}
   </div>
 </div>
 
-<!-- ═══ HOW TO PLAY ═══ -->
+<!-- HOW TO PLAY -->
 <div class="section" style="padding-top:0;">
   <div class="reveal">
     <span class="sec-label" data-ar="✦ كيف تبدأ؟" data-en="✦ How to Start">✦ كيف تبدأ؟</span>
@@ -591,26 +570,24 @@ footer a:hover{opacity:1;}
   </div>
 </div>
 
+<!-- DOWNLOAD SECTION -->
 <div class="dl-section" id="dl">
   <div class="dl-card reveal">
     <img src="cloud_char.png" alt="cloud" class="dl-cloud"/>
     <h2 data-ar="جاهز لتجربة غيمة؟ ☁️" data-en="Ready to Play? ☁️">جاهز لتجربة غيمة؟ ☁️</h2>
     <p data-ar="اختر النسخة المناسبة لك" data-en="Choose the version that suits you">اختر النسخة المناسبة لك</p>
-
+    
     <div class="version-cards" style="margin-top:10px;">
-
-      <!-- كرت نسخة بيتا -->
       <div class="version-card active">
         <h3 data-ar="Beta" data-en="Beta">Beta</h3>
-        <p class="v-desc" data-ar="النسخة التجريبية الحالية" data-en="Current test build">النسخة التجريبية الحالية</p>
+        <p class="v-desc" data-ar="النسخة البيتا الحالية" data-en="Current beta build">النسخة البيتا الحالية</p>
         <a href="https://github.com/mohamed-ali813/ghaima/releases/latest/download/ghaima.apk"
            class="btn-version" onclick="burst(event)">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          <span data-ar="تحميل نسخة بيتا" data-en="Download Beta Build">تحميل نسخة بيتا</span>
+          <span data-ar="تحميل النسخة البيتا" data-en="Download Beta">تحميل النسخة البيتا</span>
         </a>
       </div>
 
-      <!-- كرت النسخة الرسمية -->
       <div class="version-card coming-soon">
         <h3 data-ar="v1.0 الرسمية" data-en="v1.0 Official">v1.0 الرسمية</h3>
         <p class="v-desc" data-ar="الإصدار النهائي – قريباً" data-en="Final release – Coming soon">الإصدار النهائي – قريباً</p>
@@ -619,7 +596,6 @@ footer a:hover{opacity:1;}
           <span data-ar="قريباً" data-en="Coming Soon">قريباً</span>
         </a>
       </div>
-
     </div>
 
     <div class="dl-meta">
@@ -652,60 +628,40 @@ footer a:hover{opacity:1;}
     &nbsp;·&nbsp;
     <a href="https://github.com/mohamed-ali813/ghaima/releases" target="_blank" data-ar="الإصدارات" data-en="Releases">الإصدارات</a>
   </p>
-  <p style="margin-top:10px;font-size:.66rem;" data-ar="© 2026 Ghaima – جميع الحقوق محفوظة" data-en="© 2026 Ghaima – All rights reserved">© 2026 Ghaima – جميع الحقوق محفوظة</p>
+  <p style="margin-top:10px;font-size:.66rem;" data-ar="© 2026 Ghaima – جميع الحقوق محفوظة" data-en="© 2025 Ghaima – All rights reserved">© 2025 Ghaima – جميع الحقوق محفوظة</p>
 </footer>
 
-<!-- ══════════════════════════════════════════
-     JAVASCRIPT
-══════════════════════════════════════════ */
 <script>
 /* ═══ LANGUAGE SYSTEM ═══ */
 let currentLang = 'ar';
-
 function toggleLang() {
   currentLang = currentLang === 'ar' ? 'en' : 'ar';
   applyLang(currentLang);
 }
-
 function applyLang(lang) {
   const html = document.getElementById('htmlRoot');
-
-  // 1. Switch html attributes
   html.lang = lang;
-  html.dir  = lang === 'ar' ? 'rtl' : 'ltr';
-
-  // 2. Update button
-  document.getElementById('langFlag').textContent  = lang === 'ar' ? 'us' : 'al';
+  html.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  document.getElementById('langFlag').textContent = lang === 'ar' ? 'us' : 'al';
   document.getElementById('langLabel').textContent = lang === 'ar' ? 'EN' : 'عر';
-
-  // 3. Translate all data-ar / data-en elements
   document.querySelectorAll('[data-ar]').forEach(el => {
     const txt = el.getAttribute('data-' + lang);
     if (txt !== null) {
-      // If it has child elements, don't change innerHTML blindly
       if (el.children.length === 0) {
         el.innerHTML = txt;
       }
     }
   });
-
-  // 4. Update phone score locale
   pLocale = lang === 'ar' ? 'ar-EG' : 'en-US';
-
-  // 5. Animate page content
   document.body.classList.add('lang-switching');
   document.querySelectorAll('.section, .showcase, .stats-section, .dl-section, footer').forEach((el, i) => {
     el.style.animation = 'none';
-    el.offsetHeight; // reflow
+    el.offsetHeight;
     el.style.animation = `langFadeIn .4s ease ${i * 0.04}s both`;
   });
   setTimeout(() => document.body.classList.remove('lang-switching'), 600);
-
-  // 6. Persist
   localStorage.setItem('ghaimaLang', lang);
 }
-
-// Restore saved preference
 (function(){
   const saved = localStorage.getItem('ghaimaLang');
   if (saved && saved !== 'ar') applyLang(saved);
@@ -713,11 +669,10 @@ function applyLang(lang) {
 
 /* ═══ CANVAS BACKGROUND ═══ */
 const canvas = document.getElementById('bgCanvas');
-const ctx    = canvas.getContext('2d');
+const ctx = canvas.getContext('2d');
 let W, H;
 function resize(){ W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
 resize(); window.addEventListener('resize', resize);
-
 const STARS = Array.from({length:200}, () => ({
   x:Math.random(), y:Math.random(),
   r:Math.random()*1.6+.3,
@@ -733,27 +688,23 @@ function spawnShoot(){
       vy:.8+Math.random()*1.8, life:1});
 }
 setInterval(spawnShoot, 3500+Math.random()*3000);
-
 const DROPS = Array.from({length:60}, () => ({
   x:Math.random(), y:Math.random(),
   h:8+Math.random()*18,
   speed:.003+Math.random()*.007,
   a:.06+Math.random()*.16
 }));
-
 function draw(){
   ctx.clearRect(0,0,W,H);
   const grd=ctx.createLinearGradient(0,0,0,H);
   grd.addColorStop(0,'#080f1c');grd.addColorStop(.5,'#0a1525');grd.addColorStop(1,'#0c1e40');
   ctx.fillStyle=grd; ctx.fillRect(0,0,W,H);
-
   STARS.forEach(s=>{
     s.phase+=s.speed;
     const a=s.a*(.5+.5*Math.sin(s.phase));
     ctx.beginPath(); ctx.arc(s.x*W,s.y*H,s.r,0,Math.PI*2);
     ctx.fillStyle=`rgba(255,255,255,${a})`; ctx.fill();
   });
-
   for(let i=SHOOTS.length-1;i>=0;i--){
     const s=SHOOTS[i]; s.x+=s.vx; s.y+=s.vy; s.life-=.012;
     if(s.life<=0){SHOOTS.splice(i,1);continue;}
@@ -762,7 +713,6 @@ function draw(){
     ctx.beginPath(); ctx.moveTo(s.x,s.y); ctx.lineTo(s.x-s.len*.3,s.y-s.len*.15);
     ctx.strokeStyle=g2; ctx.lineWidth=2; ctx.stroke();
   }
-
   DROPS.forEach(d=>{
     d.y+=d.speed; if(d.y>1)d.y=-.05;
     const g3=ctx.createLinearGradient(0,d.y*H,0,d.y*H+d.h);
@@ -784,7 +734,6 @@ setInterval(()=>{
   if(pVal>9999) pVal=0;
   pScoreEl.textContent = pVal.toLocaleString(pLocale);
 }, 550);
-
 const pDropsEl = document.getElementById('pDrops');
 const DC=['linear-gradient(to bottom,#a8d8f0,#4A7FE5)','linear-gradient(to bottom,#FDE96B,#c9a800)',
   'linear-gradient(to bottom,#F9A8C8,#d05878)','linear-gradient(to bottom,#7BBCCC,#2d5fc4)',
@@ -797,7 +746,6 @@ function spawnPD(){
   if(pDropsEl.children.length>22) pDropsEl.removeChild(pDropsEl.children[0]);
 }
 setInterval(spawnPD,220);
-
 const pLight=document.getElementById('pLightning');
 setInterval(()=>{
   pLight.style.left=(8+Math.random()*78)+'%';
